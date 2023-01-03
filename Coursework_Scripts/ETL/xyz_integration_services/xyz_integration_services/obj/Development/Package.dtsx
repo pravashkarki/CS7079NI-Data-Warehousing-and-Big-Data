@@ -1,0 +1,2538 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/22/2022 1:15:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="COMPUTER"
+  DTS:CreatorName="COMPUTER\Pravash"
+  DTS:DTSID="{36065C4E-9BEA-4166-8238-1079D989101B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{94A32467-A9FB-4ABB-910E-8560CE4674BE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[COMPUTER.retail_db]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CE99ED99-3E74-4EEB-9E02-2F6A802764A9}"
+      DTS:ObjectName="COMPUTER.retail_db">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=COMPUTER;Initial Catalog=retail_db;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B9BB207C-19F4-415F-A7FF-F3A7DD53A85F}"
+      DTS:ObjectName="COMPUTER.xyz_dwh">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=COMPUTER;Initial Catalog=xyz_dwh;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{923E32F1-44C6-466D-AA1D-E4925215873B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task from Source DB retail_db to Destination DB xyz_dwh"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Categories Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[categories]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].Columns[category_name]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="category_name"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].ExternalColumns[category_name]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].Columns[category_department_id]"
+                      cachedDataType="i4"
+                      cachedName="category_department_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].ExternalColumns[category_department_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_department_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].Columns[category_id]"
+                      cachedDataType="i4"
+                      cachedName="category_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].ExternalColumns[category_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].ExternalColumns[category_id]"
+                      dataType="i4"
+                      name="category_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].ExternalColumns[category_department_id]"
+                      dataType="i4"
+                      name="category_department_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input].ExternalColumns[category_name]"
+                      dataType="wstr"
+                      length="45"
+                      name="category_name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Categories Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[retail_db].[categories]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].ExternalColumns[category_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_id]"
+                      name="category_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_department_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].ExternalColumns[category_department_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_department_id]"
+                      name="category_department_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].ExternalColumns[category_name]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].Columns[category_name]"
+                      name="category_name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].ExternalColumns[category_id]"
+                      dataType="i4"
+                      name="category_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].ExternalColumns[category_department_id]"
+                      dataType="i4"
+                      name="category_department_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output].ExternalColumns[category_name]"
+                      dataType="wstr"
+                      length="45"
+                      name="category_name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[category_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[category_id]"
+                      name="category_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[category_department_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[category_department_id]"
+                      name="category_department_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[category_name]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[category_name]"
+                      name="category_name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Customers Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[customers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_fname]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="customer_fname"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_fname]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_fname]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_lname]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="customer_lname"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_lname]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_lname]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_email]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="customer_email"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_email]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_email]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_password]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="customer_password"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_password]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_password]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="customer_street"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_street]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_street]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_city]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="customer_city"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_city]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_city]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_state]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="customer_state"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_state]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_zipcode]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="customer_zipcode"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_zipcode]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_zipcode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_fname]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_fname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_lname]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_lname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_email]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_email" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_password]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_password" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_street]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_street" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_city]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_state" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input].ExternalColumns[customer_zipcode]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_zipcode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Customers Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[retail_db].[customers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_fname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_fname]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_fname]"
+                      name="customer_fname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_lname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_lname]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_lname]"
+                      name="customer_lname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_email]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_email]"
+                      name="customer_email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_password]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_password]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_password]"
+                      name="customer_password"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_street]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_street]"
+                      length="255"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_street]"
+                      name="customer_street"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_city]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_city]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_city]"
+                      name="customer_city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_state]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_state]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_state]"
+                      name="customer_state"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_zipcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_zipcode]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].Columns[customer_zipcode]"
+                      name="customer_zipcode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_fname]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_fname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_lname]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_lname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_email]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_email" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_password]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_password" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_street]"
+                      dataType="wstr"
+                      length="255"
+                      name="customer_street" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_city]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_city" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_state]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_state" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output].ExternalColumns[customer_zipcode]"
+                      dataType="wstr"
+                      length="45"
+                      name="customer_zipcode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_fname]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_fname]"
+                      name="customer_fname" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_lname]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_lname]"
+                      name="customer_lname" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_email]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_email]"
+                      name="customer_email" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_password]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_password]"
+                      name="customer_password" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_street]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_street]"
+                      name="customer_street" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_city]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_city]"
+                      name="customer_city" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_state]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_state]"
+                      name="customer_state" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_zipcode]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[customer_zipcode]"
+                      name="customer_zipcode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Departments Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[departments]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input].Columns[department_name]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="department_name"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input].ExternalColumns[department_name]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].Columns[department_name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input].Columns[department_id]"
+                      cachedDataType="i4"
+                      cachedName="department_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input].ExternalColumns[department_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].Columns[department_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input].ExternalColumns[department_id]"
+                      dataType="i4"
+                      name="department_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input].ExternalColumns[department_name]"
+                      dataType="wstr"
+                      length="45"
+                      name="department_name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Departments Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[retail_db].[departments]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].Columns[department_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].ExternalColumns[department_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].Columns[department_id]"
+                      name="department_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].Columns[department_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].ExternalColumns[department_name]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].Columns[department_name]"
+                      name="department_name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].ExternalColumns[department_id]"
+                      dataType="i4"
+                      name="department_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output].ExternalColumns[department_name]"
+                      dataType="wstr"
+                      length="45"
+                      name="department_name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[department_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[department_id]"
+                      name="department_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[department_name]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[department_name]"
+                      name="department_name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Order Items Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[order_items]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].Columns[order_item_id]"
+                      cachedDataType="i4"
+                      cachedName="order_item_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].Columns[order_item_order_id]"
+                      cachedDataType="i4"
+                      cachedName="order_item_order_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_order_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_order_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].Columns[order_item_product_id]"
+                      cachedDataType="i4"
+                      cachedName="order_item_product_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_product_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_product_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].Columns[order_item_quantity]"
+                      cachedDataType="i2"
+                      cachedName="order_item_quantity"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_quantity]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_quantity]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].Columns[order_item_subtotal]"
+                      cachedDataType="r4"
+                      cachedName="order_item_subtotal"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_subtotal]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_subtotal]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].Columns[order_item_product_price]"
+                      cachedDataType="r4"
+                      cachedName="order_item_product_price"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_product_price]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_product_price]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_id]"
+                      dataType="i4"
+                      name="order_item_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_order_id]"
+                      dataType="i4"
+                      name="order_item_order_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_product_id]"
+                      dataType="i4"
+                      name="order_item_product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_quantity]"
+                      dataType="i2"
+                      name="order_item_quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_subtotal]"
+                      dataType="r4"
+                      name="order_item_subtotal" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_item_product_price]"
+                      dataType="r4"
+                      name="order_item_product_price" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Order Items Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[retail_db].[order_items]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_id]"
+                      name="order_item_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_order_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_order_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_order_id]"
+                      name="order_item_order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_product_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_product_id]"
+                      name="order_item_product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_quantity]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_quantity]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_quantity]"
+                      name="order_item_quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_subtotal]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_subtotal]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_subtotal]"
+                      name="order_item_subtotal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_product_price]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_product_price]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].Columns[order_item_product_price]"
+                      name="order_item_product_price"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_id]"
+                      dataType="i4"
+                      name="order_item_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_order_id]"
+                      dataType="i4"
+                      name="order_item_order_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_product_id]"
+                      dataType="i4"
+                      name="order_item_product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_quantity]"
+                      dataType="i2"
+                      name="order_item_quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_subtotal]"
+                      dataType="r4"
+                      name="order_item_subtotal" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output].ExternalColumns[order_item_product_price]"
+                      dataType="r4"
+                      name="order_item_product_price" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_id]"
+                      name="order_item_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_order_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_order_id]"
+                      name="order_item_order_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_product_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_product_id]"
+                      name="order_item_product_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_quantity]"
+                      dataType="i2"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_quantity]"
+                      name="order_item_quantity" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_subtotal]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_subtotal]"
+                      name="order_item_subtotal" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_product_price]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[order_item_product_price]"
+                      name="order_item_product_price" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Orders Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].Columns[order_id]"
+                      cachedDataType="i4"
+                      cachedName="order_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].Columns[order_date]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="order_date"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_date]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_date]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].Columns[order_customer_id]"
+                      cachedDataType="i4"
+                      cachedName="order_customer_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_customer_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_customer_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].Columns[order_status]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="order_status"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      dataType="i4"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_date]"
+                      dataType="dbTimeStamp2"
+                      name="order_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_customer_id]"
+                      dataType="i4"
+                      name="order_customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
+                      dataType="wstr"
+                      length="45"
+                      name="order_status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Orders Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[retail_db].[orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_date]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_date]"
+                      name="order_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_customer_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_customer_id]"
+                      name="order_customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].Columns[order_status]"
+                      name="order_status"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      dataType="i4"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_date]"
+                      dataType="dbTimeStamp2"
+                      name="order_date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_customer_id]"
+                      dataType="i4"
+                      name="order_customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
+                      dataType="wstr"
+                      length="45"
+                      name="order_status" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_date]"
+                      name="order_date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_customer_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_customer_id]"
+                      name="order_customer_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_status]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[order_status]"
+                      name="order_status" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Products Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[products]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.xyz_dwh]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].Columns[product_category_id]"
+                      cachedDataType="i4"
+                      cachedName="product_category_id"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_category_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_category_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].Columns[product_name]"
+                      cachedDataType="wstr"
+                      cachedLength="45"
+                      cachedName="product_name"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_name]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].Columns[product_description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="product_description"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_description]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_description]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].Columns[product_price]"
+                      cachedDataType="r4"
+                      cachedName="product_price"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_price]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_price]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].Columns[product_image]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="product_image"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_image]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_image]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_category_id]"
+                      dataType="i4"
+                      name="product_category_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_name]"
+                      dataType="wstr"
+                      length="45"
+                      name="product_name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_description]"
+                      dataType="wstr"
+                      length="255"
+                      name="product_description" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_price]"
+                      dataType="r4"
+                      name="product_price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input].ExternalColumns[product_image]"
+                      dataType="wstr"
+                      length="255"
+                      name="product_image" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Products Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[retail_db].[products]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[COMPUTER.retail_db]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_category_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_category_id]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_category_id]"
+                      name="product_category_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_name]"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_name]"
+                      name="product_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_description]"
+                      length="255"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_description]"
+                      name="product_description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_price]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_price]"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_price]"
+                      name="product_price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_image]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_image]"
+                      length="255"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].Columns[product_image]"
+                      name="product_image"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_category_id]"
+                      dataType="i4"
+                      name="product_category_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_name]"
+                      dataType="wstr"
+                      length="45"
+                      name="product_name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_description]"
+                      dataType="wstr"
+                      length="255"
+                      name="product_description" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_price]"
+                      dataType="r4"
+                      name="product_price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output].ExternalColumns[product_image]"
+                      dataType="wstr"
+                      length="255"
+                      name="product_image" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_category_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_category_id]"
+                      name="product_category_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_name]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_name]"
+                      name="product_name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_description]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_description]"
+                      name="product_description" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_price]"
+                      dataType="r4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_price]"
+                      name="product_price" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_image]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[product_image]"
+                      name="product_image" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output1]"
+              endId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output2]"
+              endId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output3]"
+              endId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output4]"
+              endId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output5]"
+              endId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task to Delete Data from Destination xyz_dwh"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{477012AB-C7EB-4F17-9B1C-9C10EC50963F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task to Delete Data from Destination xyz_dwh"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B9BB207C-19F4-415F-A7FF-F3A7DD53A85F}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.categories;&#xA;TRUNCATE TABLE dbo.customers;&#xA;TRUNCATE TABLE dbo.departments;&#xA;TRUNCATE TABLE dbo.order_items;&#xA;TRUNCATE TABLE dbo.orders;&#xA;TRUNCATE TABLE dbo.products;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="403,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh"
+          TopLeft="401,133" />
+        <NodeLayout
+          Size="361,42"
+          Id="Package\Execute SQL Task to Delete Data from Destination xyz_dwh"
+          TopLeft="429,205" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source"
+          TopLeft="351.5,139.5" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination"
+          TopLeft="692,141" />
+        <EdgeLayout
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output]"
+          TopLeft="515.5,161.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="176.5,0"
+              Start="0,0"
+              End="169,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="169,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source"
+          TopLeft="356,205" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination"
+          TopLeft="693.5,202.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output1]"
+          TopLeft="520,224.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="173.5,0"
+              Start="0,0"
+              End="166,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="166,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source"
+          TopLeft="360,268" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination"
+          TopLeft="696.5,266.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output2]"
+          TopLeft="535,288.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="161.5,0"
+              Start="0,0"
+              End="154,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="154,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source"
+          TopLeft="362.5,325.5" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination"
+          TopLeft="699,326" />
+        <EdgeLayout
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output3]"
+          TopLeft="533.5,346.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="165.5,0"
+              Start="0,0"
+              End="158,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="158,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source"
+          TopLeft="367,385" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination"
+          TopLeft="702.5,390.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output4]"
+          TopLeft="513,408.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="189.5,0"
+              Start="0,0"
+              End="182,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="182,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source"
+          TopLeft="364,448" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination"
+          TopLeft="699.5,450.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh.Paths[OLE DB Source Output5]"
+          TopLeft="519,470.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="180.5,0"
+              Start="0,0"
+              End="173,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="173,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Categories Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Customers Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Departments Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Order Items Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Orders Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task from Source DB retail_db to Destination DB xyz_dwh\Products Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
